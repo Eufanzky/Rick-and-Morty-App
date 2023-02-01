@@ -1,14 +1,73 @@
 .header {
-    width: 100vw;
-    height: 70px;
-    background-color: var(--wintergreen-dream);
-    box-shadow: 0 3px 5px black;
+  width: 100vw;
+  height: 70px;
+  background-color: var(--wintergreen-dream);
+  box-shadow: 0 3px 5px black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.header-logo {
+  margin-left: 10px;
+  display: block;
+  width: 50px;
+  height: 50px;
+  color: var(--nyanza);
 }
 
 .main-title {
-    margin-top: 20px;
-    font-size: 2rem;
-    color: var(--eggplant);
-    text-align: center;
-    font-weight: bolder;
+  margin-top: 20px;
+  font-size: 3rem;
+  color: var(--eggplant);
+  text-align: center;
+  font-weight: bolder;
+  
+}
+.characters-container {
+  width: 100%;
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  gap: 50px;
+  place-items: center;
+}
+.section-subtitle {
+  margin: 10px 0;
+  font-size: 1.2rem;
+  text-align: center;
+  text-decoration: underline;
+}
+
+
+
+
+/*TEXT ANIMATION*/
+.text-animation {
+  animation: color-change 2s ease-in-out infinite;
+}
+
+@keyframes color-change {
+  0% {
+    color: red;
+  }
+  50% {
+    color: blue;
+  }
+  100% {
+    color: red;
+  }
+}
+
+
+@media (min-width: 500px) {
+  .characters-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .characters-container {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
