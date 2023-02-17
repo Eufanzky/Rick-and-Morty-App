@@ -1,0 +1,21 @@
+.search-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-container input {
+    width: 300px;
+    height: 50px;
+    font-size: 1.1rem;
+    padding-left: 10px;
+    background-color: var(--eggplant);
+    color: var(--nyanza);
+
+    border-radius: 2px;
+    border: solid black ;
+}
+.search-container input::placeholder{
+    color: var(--nyanza);
+    opacity: 50%;
+}
