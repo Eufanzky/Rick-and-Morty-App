@@ -7,6 +7,8 @@ import { BiWorld } from "react-icons/bi";
 import Nav from "./components/Nav/Nav";
 import CharacterCard from "./components/CharacterCard/CharacterCard";
 import Searcher from "./components/Searcher/Searcher";
+import PrevNextContainer from "./components/PrevNextContainer/PrevNextContainer";
+import CharacterModal from "./components/CharacterModal/CharacterModal";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -22,13 +24,18 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(
-        `https://rickandmortyapi.com/api/character?page=${page}&name=${searchTerm}`
-      );
-      const data = await res.json();
-      setCharacters(data.results);
-      setPrevPageExistence(data.prev);
-      setNextPageExistence(data.next);
+      try {
+        const res = await fetch(
+          `https://rickandmortyapi.com/api/character?page=${page}&name=${searchTerm}`
+        );
+        const data = await res.json();
+        setCharacters(data.results);
+        setPrevPageExistence(data.info.prev);
+        setNextPageExistence(data.info.next);
+      } catch (error) {
+        console.log("hubo un error");
+        console.error(error);
+      }
     };
     fetchData();
   }, [page, searchTerm]);
@@ -63,61 +70,39 @@ function App() {
         <section className="characters-section">
           <h2 className="section-subtitle">Characters</h2>
           <Searcher searchTerm={searchTerm} handleSearch={handleSearch} />
-          <div className="prev-next-container">
-            <button
-              className={`prev-next-buttons prev-button ${
-                prevPageExistence === null ? "display-none" : ""
-              }`}
-              onClick={previousPage}
-            >
-              Prev
-            </button>
-            <button
-              className={`prev-next-buttons next-button ${
-                nextPageExistence === null ? "display-none" : ""
-              }`}
-              onClick={nextPage}
-            >
-              Next
-            </button>
-          </div>
+          <PrevNextContainer
+            previousPage={previousPage}
+            nextPage={nextPage}
+            prevPageExistence={prevPageExistence}
+            nextPageExistence={nextPageExistence}
+          />
           <div className="characters-container">
-            {characters.map((character) => {
-              return (
-                <CharacterCard
-                  key={character.id}
-                  image={character.image}
-                  name={character.name}
-                  status={character.status}
-                  species={character.species}
-                  gender={character.gender}
-                  onClick={() => setSelectedCharacter(character)}
-                />
-              );
-            })}
+            {characters ? (
+              characters.map((character) => {
+                return (
+                  <CharacterCard
+                    key={character.id}
+                    image={character.image}
+                    name={character.name}
+                    status={character.status}
+                    species={character.species}
+                    gender={character.gender}
+                    onClick={() => setSelectedCharacter(character)}
+                  />
+                );
+              })
+            ) : (
+              <p className="not-found-404-sentence">Not found</p>
+            )}
           </div>
-          {/* {selectedCharacter && (
-            <div className="modal">
-              <div className="modal-content">
-                <h2>{selectedCharacter.name}</h2>
-                <img
-                  src={selectedCharacter.image}
-                  alt={selectedCharacter.name}
-                />
-                <p>Status: {selectedCharacter.status}</p>
-                <p>Species: {selectedCharacter.species}</p>
-                <p>Gender: {selectedCharacter.gender}</p>
-                <button onClick={() => setSelectedCharacter(null)}>
-                  Close
-                </button>
-              </div>
-            </div>
-          )} */}
         </section>
+
+        {/* Modal when selecting one character*/}
+        <CharacterModal/>
       </main>
 
       {/* --------FOOTER CONTENT--------- */}
-      <footer className="footer">
+      <footer className={`footer ${characters ? "" : "footer-to-the-bottom"}`}>
         <p>
           Made with ❤️ by <b>Eufanzky</b>
         </p>
