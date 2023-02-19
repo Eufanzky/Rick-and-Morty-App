@@ -19,8 +19,10 @@ function App() {
 
   // To search a term
   const [searchTerm, setSearchTerm] = useState("");
+
   // To show modal for a selected character
   const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,6 +55,15 @@ function App() {
     setSearchTerm(event.target.value);
   };
 
+  //to open or close CharacterModal
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
       {/* ------HEADER CONTENT-------- */}
@@ -82,12 +93,14 @@ function App() {
                 return (
                   <CharacterCard
                     key={character.id}
+                    character = { character }
                     image={character.image}
                     name={character.name}
                     status={character.status}
                     species={character.species}
                     gender={character.gender}
-                    onClick={() => setSelectedCharacter(character)}
+                    openModal={openModal}
+                    setSelectedCharacter={setSelectedCharacter}
                   />
                 );
               })
@@ -98,7 +111,17 @@ function App() {
         </section>
 
         {/* Modal when selecting one character*/}
-        <CharacterModal/>
+        <CharacterModal
+          className = "characterModal"
+          isOpen={isOpen}
+          closeModal={closeModal}
+          image = {selectedCharacter? selectedCharacter.image : null}
+          name = {selectedCharacter? selectedCharacter.name : null}
+          species = {selectedCharacter? selectedCharacter.species : null}
+          status = {selectedCharacter? selectedCharacter.status : null}
+          gender = {selectedCharacter? selectedCharacter.gender : null}
+          origin = {selectedCharacter? selectedCharacter.origin : null}
+        />
       </main>
 
       {/* --------FOOTER CONTENT--------- */}

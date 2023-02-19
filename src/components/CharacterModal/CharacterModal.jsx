@@ -1,8 +1,9 @@
 import React from "react";
+import "./CharacterModal.css";
 
 function CharacterModal({
   isOpen,
-  onClose,
+  closeModal,
   image,
   name,
   species,
@@ -15,15 +16,19 @@ function CharacterModal({
   return (
     <div className="character-modal">
       <div className="character-modal-content">
-        <button className="close-button" onClick={onClose}>
+        <button className="close-button" onClick={closeModal}>
           X
         </button>
-        <img src={image} alt={name} />
-        <h3>{name}</h3>
-        <p>Species: {species}</p>
-        <p>Status: {status}</p>
-        <p>Gender: {gender}</p>
-        <p>Origin: {origin.name}</p>
+        <figcaption className="character-modal-content__image-container">
+          <img src={image} alt={name} />
+        </figcaption>
+        <div className="character-modal-content__text-container">
+          <h3>{name}</h3>
+          <p>Species: {species}</p>
+          <p>Status: {status}</p>
+          <p>Gender: {gender}</p>
+          <p>Origin: {origin.name}</p>
+        </div>
       </div>
     </div>
   );

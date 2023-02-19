@@ -24,6 +24,7 @@
   place-self: center;
 }
 
+/*--------MAIN-----------*/
 .main {
   /*this style helps the footer be at the bottom*/
   min-height: calc(100vh - 220px);
@@ -51,7 +52,22 @@
   text-decoration: underline;
 }
 
-/*footer*/
+
+/*character modal*/
+/* .characterModal {
+  position: fixed;
+  
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+/*------------FOOTER----------*/
 .footer {
   margin-top: 50px;
   background-color: #24292e;

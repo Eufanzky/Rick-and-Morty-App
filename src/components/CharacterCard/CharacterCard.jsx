@@ -4,7 +4,16 @@ import { useEffect } from "react";
 import VanillaTilt from "vanilla-tilt";
 import { useState } from "react";
 
-function CharacterCard({ image, name, species, status, gender }) {
+function CharacterCard({
+  character,
+  image,
+  name,
+  species,
+  status,
+  gender,
+  openModal,
+  setSelectedCharacter,
+}) {
   useEffect(() => {
     VanillaTilt.init(document.querySelectorAll(".character-card"), {
       max: 25,
@@ -17,6 +26,10 @@ function CharacterCard({ image, name, species, status, gender }) {
     <div
       className="character-card"
       data-tilt={image ? "" : undefined}
+      onClick={() => {
+        setSelectedCharacter(character);
+        openModal();
+      }}
     >
       <figure className="parallax-inner-elements">
         <img src={image} alt="" />
