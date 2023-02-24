@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { RickAppContext } from "../../context/RickAppContext";
 
 function CharacterCard({image, character, name, species, status, gender}) {
-  
+  const {setSelectedCharacter, openModal} = useContext(RickAppContext);
   useEffect(() => {
     VanillaTilt.init(document.querySelectorAll(".character-card"), {
       max: 25,

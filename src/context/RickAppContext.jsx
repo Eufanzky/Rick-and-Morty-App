@@ -65,6 +65,7 @@ export function RickAppContextProvider(props) {
         nextPageExistence,
         searchTerm,
         selectedCharacter,
+        setSelectedCharacter,
         isOpen,
         previousPage,
         nextPage,
