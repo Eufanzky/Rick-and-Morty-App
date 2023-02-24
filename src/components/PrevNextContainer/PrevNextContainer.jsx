@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
 import { ReactDOM } from "react";
 import "./PrevNextContainer.css";
+import { RickAppContext } from "../../context/RickAppContext";
 
-function PrevNextContainer({prevPageExistence, nextPageExistence, previousPage, nextPage}) {
+function PrevNextContainer() {
+  const { prevPageExistence, nextPageExistence, previousPage, nextPage } = useContext(RickAppContext);
   return (
     <div className="prev-next-container">
       <button

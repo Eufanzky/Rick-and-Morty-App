@@ -3,17 +3,11 @@ import "./CharacterCard.css";
 import { useEffect } from "react";
 import VanillaTilt from "vanilla-tilt";
 import { useState } from "react";
+import { useContext } from "react";
+import { RickAppContext } from "../../context/RickAppContext";
 
-function CharacterCard({
-  character,
-  image,
-  name,
-  species,
-  status,
-  gender,
-  openModal,
-  setSelectedCharacter,
-}) {
+function CharacterCard({image, character, name, species, status, gender}) {
+  
   useEffect(() => {
     VanillaTilt.init(document.querySelectorAll(".character-card"), {
       max: 25,

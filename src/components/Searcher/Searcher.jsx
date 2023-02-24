@@ -1,9 +1,10 @@
-import React from "react";
+import React,{useContext} from "react";
 import { ReactDOM } from "react";
 import './Searcher.css';
+import { RickAppContext } from "../../context/RickAppContext";
 
-
-function Searcher({searchTerm, handleSearch}) {
+function Searcher() {
+  const { searchTerm, handleSearch } = useContext(RickAppContext);
   return (
     <div className="search-container">
       <input

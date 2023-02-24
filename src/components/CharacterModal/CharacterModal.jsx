@@ -1,16 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./CharacterModal.css";
+import { RickAppContext } from "../../context/RickAppContext";
 
-function CharacterModal({
-  isOpen,
-  closeModal,
-  image,
-  name,
-  species,
-  status,
-  gender,
-  origin,
-}) {
+function CharacterModal({ image, name, species, status, gender, origin }) {
+  const { isOpen, closeModal } = useContext(RickAppContext);
   if (!isOpen) return null;
 
   return (

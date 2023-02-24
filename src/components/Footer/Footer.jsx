@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ReactDOM } from "react";
 import "./Footer.css";
+import { RickAppContext } from "../../context/RickAppContext";
 
+function Footer() {
+  const { characters } = useContext(RickAppContext);
 
-function Footer({characters}) {
   return (
     <footer className={`footer ${characters ? "" : "footer-to-the-bottom"}`}>
       <p>

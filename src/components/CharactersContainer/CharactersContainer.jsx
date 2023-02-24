@@ -1,14 +1,16 @@
-import React from "react";
+import React, {useContext} from "react";
 import { ReactDOM } from "react";
 import "./CharactersContainer.css";
 import CharacterCard from "../CharacterCard/CharacterCard";
+import { RickAppContext } from "../../context/RickAppContext";
 
-
-function CharactersContainer({ characters, openModal, setSelectedCharacter }) {
+function CharactersContainer() {
+  const {characters, openModal, setSelectedCharacter} = useContext(RickAppContext);
   return (
     <div className="characters-container">
       {characters ? (
         characters.map((character) => {
+          
           return (
             <CharacterCard
               key={character.id}
