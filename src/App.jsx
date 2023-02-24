@@ -9,6 +9,8 @@ import CharacterCard from "./components/CharacterCard/CharacterCard";
 import Searcher from "./components/Searcher/Searcher";
 import PrevNextContainer from "./components/PrevNextContainer/PrevNextContainer";
 import CharacterModal from "./components/CharacterModal/CharacterModal";
+import Footer from "./components/Footer/Footer";
+import CharactersContainer from "./components/CharactersContainer/CharactersContainer";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -87,49 +89,29 @@ function App() {
             prevPageExistence={prevPageExistence}
             nextPageExistence={nextPageExistence}
           />
-          <div className="characters-container">
-            {characters ? (
-              characters.map((character) => {
-                return (
-                  <CharacterCard
-                    key={character.id}
-                    character = { character }
-                    image={character.image}
-                    name={character.name}
-                    status={character.status}
-                    species={character.species}
-                    gender={character.gender}
-                    openModal={openModal}
-                    setSelectedCharacter={setSelectedCharacter}
-                  />
-                );
-              })
-            ) : (
-              <p className="not-found-404-sentence">Not found</p>
-            )}
-          </div>
+          <CharactersContainer
+            characters={characters}
+            openModal={openModal}
+            setSelectedCharacter={selectedCharacter}
+          />
         </section>
 
         {/* Modal when selecting one character*/}
         <CharacterModal
-          className = "characterModal"
+          className="characterModal"
           isOpen={isOpen}
           closeModal={closeModal}
-          image = {selectedCharacter? selectedCharacter.image : null}
-          name = {selectedCharacter? selectedCharacter.name : null}
-          species = {selectedCharacter? selectedCharacter.species : null}
-          status = {selectedCharacter? selectedCharacter.status : null}
-          gender = {selectedCharacter? selectedCharacter.gender : null}
-          origin = {selectedCharacter? selectedCharacter.origin : null}
+          image={selectedCharacter ? selectedCharacter.image : null}
+          name={selectedCharacter ? selectedCharacter.name : null}
+          species={selectedCharacter ? selectedCharacter.species : null}
+          status={selectedCharacter ? selectedCharacter.status : null}
+          gender={selectedCharacter ? selectedCharacter.gender : null}
+          origin={selectedCharacter ? selectedCharacter.origin : null}
         />
       </main>
 
       {/* --------FOOTER CONTENT--------- */}
-      <footer className={`footer ${characters ? "" : "footer-to-the-bottom"}`}>
-        <p>
-          Made with ❤️ by <b>Eufanzky</b>
-        </p>
-      </footer>
+      <Footer characters={characters} />
     </>
   );
 }
