@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import "./CharacterModal.css";
-import { RickAppContext } from "../../context/RickAppContext";
+import "../styles/CharacterModal.scss";
+import { RickAppContext } from "../context/RickAppContext";
 
 function CharacterModal({ image, name, species, status, gender, origin }) {
   const { isOpen, closeModal } = useContext(RickAppContext);

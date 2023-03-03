@@ -1,10 +1,7 @@
-import CharacterModal from "../CharacterModal/CharacterModal";
-import "./CharacterCard.css";
-import { useEffect } from "react";
+import "../styles/CharacterCard.scss";
+import { useEffect, useContext } from "react";
 import VanillaTilt from "vanilla-tilt";
-import { useState } from "react";
-import { useContext } from "react";
-import { RickAppContext } from "../../context/RickAppContext";
+import { RickAppContext } from "../context/RickAppContext";
 
 function CharacterCard({image, character, name, species, status, gender}) {
   const {setSelectedCharacter, openModal} = useContext(RickAppContext);

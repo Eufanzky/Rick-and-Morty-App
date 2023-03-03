@@ -1,7 +1,6 @@
-import React,{useContext} from "react";
-import { ReactDOM } from "react";
-import './Searcher.css';
-import { RickAppContext } from "../../context/RickAppContext";
+import React,{ useContext } from "react";
+import '../styles/Searcher.scss';
+import { RickAppContext } from "../context/RickAppContext";
 
 function Searcher() {
   const { searchTerm, handleSearch } = useContext(RickAppContext);

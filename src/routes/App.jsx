@@ -1,17 +1,17 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 //CSS
-import "./App.css";
+import "../styles/App.scss";
 //icons
 import { BiWorld } from "react-icons/bi";
 //components
-import Nav from "./components/Nav/Nav";
-import Searcher from "./components/Searcher/Searcher";
-import PrevNextContainer from "./components/PrevNextContainer/PrevNextContainer";
-import CharacterModal from "./components/CharacterModal/CharacterModal";
-import Footer from "./components/Footer/Footer";
-import CharactersContainer from "./components/CharactersContainer/CharactersContainer";
+import Nav from "../components/Nav";
+import Searcher from "../components/Searcher";
+import PrevNextContainer from "../containers/PrevNextContainer";
+import CharacterModal from "../components/CharacterModal";
+import Footer from "../components/Footer";
+import CharactersContainer from "../containers/CharactersContainer";
 //context
-import { RickAppContext } from "./context/RickAppContext";
+import { RickAppContext } from "../context/RickAppContext";
 
 
 function App() {

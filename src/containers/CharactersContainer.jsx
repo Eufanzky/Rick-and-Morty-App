@@ -1,8 +1,7 @@
 import React, {useContext} from "react";
-import { ReactDOM } from "react";
-import "./CharactersContainer.css";
-import CharacterCard from "../CharacterCard/CharacterCard";
-import { RickAppContext } from "../../context/RickAppContext";
+import "../styles/CharactersContainer.scss";
+import CharacterCard from "../components/CharacterCard";
+import { RickAppContext } from "../context/RickAppContext";
 
 function CharactersContainer() {
   const {characters, openModal, setSelectedCharacter} = useContext(RickAppContext);

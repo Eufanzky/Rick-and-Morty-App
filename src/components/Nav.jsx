@@ -1,4 +1,4 @@
-import "./Nav.css";
+import "../styles/Nav.scss";
 
 function Nav() {
     return <nav className="nav">

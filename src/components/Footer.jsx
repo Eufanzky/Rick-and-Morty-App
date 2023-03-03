@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
-import { ReactDOM } from "react";
-import "./Footer.css";
-import { RickAppContext } from "../../context/RickAppContext";
+import "../styles/Footer.scss";
+import { RickAppContext } from "../context/RickAppContext";
 
 function Footer() {
   const { characters } = useContext(RickAppContext);
