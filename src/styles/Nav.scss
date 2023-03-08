@@ -23,6 +23,10 @@
     cursor: pointer;
 }
 
+.links {
+    color: var(--unbleached-silk);
+}
+
 @media (min-width: 500px) {
     .nav {
         display: block;

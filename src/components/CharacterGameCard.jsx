@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
+import "../styles/CharacterGameCard.scss";
 
-export const CharacterGameCard = () => {
+export const CharacterGameCard = ({ image }) => {
   return (
-    <div><img src=""/></div>
-  )
-}
+    <div className="game-card-image-div">
+      <img src={image} />
+    </div>
+  );
+};
