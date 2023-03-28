@@ -10,6 +10,10 @@ export const Game = () => {
   const [numberOfCharacters, setNumberOfCharacters] = useState(10);
   const [difficulty, setDifficulty] = useState("easy");
 
+  const [arrOfImages, setArrOfImages] = useState([]);
+  const [arrOfIds, setArrOfIds] = useState([]);
+  const [numberOfClicks, setNumberOfClicks] = useState(0);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,9 +54,38 @@ export const Game = () => {
   }, [totalCharacters, numberOfCharacters]);
 
   let charactersForGrid = [...characters, ...characters];
-  charactersForGrid.sort(function () {
-    return Math.random() - 0.5;
-  });
+  useEffect(() => {
+    charactersForGrid.sort(function () {
+      return Math.random() - 0.5;
+    });
+  }, []);
+
+  /*TODO: DELETE THIS USEEFFCT AFTER PROVES */
+  useEffect(() => {
+    if (numberOfClicks === 2) {
+      arrOfImages[0] === arrOfImages[1]
+        ? console.log("same")
+        : flipCards(arrOfIds[0], arrOfIds[1]);
+      // Reset the "arrOfImages" array and the "numberOfClicks" state variable
+      setArrOfImages([]);
+      setArrOfIds([]);
+      setNumberOfClicks(0);
+    }
+  }, [arrOfImages]);
+  const flipCards = (id1, id2) => {
+    const gameCardsNodes = document.querySelector(".game-container").childNodes;
+    const gameCards = [...gameCardsNodes];
+
+    gameCards.map((element) => {
+      const id = element.getAttribute("idgamecard");
+      if (id === id1 || id === id2) {
+        element.style.pointerEvents = "auto";
+        setTimeout(() => {
+          element.className = "game-card flipped";
+        }, 1000);
+      }
+    });
+  };
 
   return (
     <>
@@ -61,7 +94,7 @@ export const Game = () => {
         <Nav />
       </header>
       <section className="Game">
-        <h2>
+        <h2 className="difficulty-title">
           {(difficulty === `easy` && `Easy Mode`) ||
             (difficulty === `medium` && `Medium Mode`) ||
             (difficulty === `hard` && `Hard Mode`)}
@@ -74,7 +107,19 @@ export const Game = () => {
         `}
         >
           {charactersForGrid.map((character, index) => {
-            return <CharacterGameCard image={character.image} key={index} />;
+            return (
+              <CharacterGameCard
+                numberOfClicks={numberOfClicks}
+                setNumberOfClicks={setNumberOfClicks}
+                arrOfImages={arrOfImages}
+                setArrOfImages={setArrOfImages}
+                arrOfIds={arrOfIds}
+                setArrOfIds={setArrOfIds}
+                image={character.image}
+                key={index}
+                idgamecard={index}
+              />
+            );
           })}
         </div>
         <section className="difficulty-section">
