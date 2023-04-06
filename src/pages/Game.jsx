@@ -5,21 +5,26 @@ import Nav from "../components/Nav";
 import "../styles/Game.scss";
 
 export const Game = () => {
-  const [totalCharacters, setTotalCharacters] = useState(0);
-  const [characters, setCharacters] = useState([]);
-  const [numberOfCharacters, setNumberOfCharacters] = useState(10);
+  const [totalCards, setTotalCards] = useState(0);
+  const [cards, setCards] = useState([]);
+  const [numberOfcards, setNumberOfcards] = useState(10);
   const [difficulty, setDifficulty] = useState("easy");
 
   const [arrOfImages, setArrOfImages] = useState([]);
   const [arrOfIds, setArrOfIds] = useState([]);
   const [numberOfClicks, setNumberOfClicks] = useState(0);
+  const [flippedCards, setFlippedCards] = useState([]);
+  const [unflippedCards, setUnflippedCards] = useState([]);
 
+
+  
+  //useEffect for fetching data and set cards
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await fetch(`https://rickandmortyapi.com/api/character`);
         const data = await res.json();
-        setTotalCharacters(data.info.count);
+        setTotalCards(data.info.count);
       } catch (error) {
         console.error(error);
       }
@@ -29,63 +34,66 @@ export const Game = () => {
       return Math.random() * (max - min) + min;
     }
 
-    const getRandomCharacters = async () => {
+    //gets random cards AND sets them at cards state
+    const getRandomcards = async () => {
       try {
         let apiString = ``;
-        for (let i = 1; i <= numberOfCharacters; i++) {
-          if (i == numberOfCharacters) {
-            apiString += `${parseInt(randomNumber(1, totalCharacters))}`;
+        for (let i = 1; i <= numberOfcards; i++) {
+          if (i == numberOfcards) {
+            apiString += `${parseInt(randomNumber(1, totalCards))}`;
           } else {
-            apiString += `${parseInt(randomNumber(1, totalCharacters))},`;
+            apiString += `${parseInt(randomNumber(1, totalCards))},`;
           }
         }
         const res = await fetch(
           `https://rickandmortyapi.com/api/character/${apiString}`
         );
         const data = await res.json();
-        setCharacters(data);
+        setCards(data);
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchData();
-    getRandomCharacters();
-  }, [totalCharacters, numberOfCharacters]);
+    getRandomcards();
+  }, [totalCards, numberOfcards]);
 
-  let charactersForGrid = [...characters, ...characters];
+  //put cards on the grid for the game
+  let cardsForGrid = [...cards, ...cards];
   useEffect(() => {
-    charactersForGrid.sort(function () {
+    cardsForGrid.sort(function () {
       return Math.random() - 0.5;
     });
   }, []);
 
-  /*TODO: DELETE THIS USEEFFCT AFTER PROVES */
+
+  /*every time any card is flipped we get the two flipped cards */
+  useEffect(()=> {
+    
+  },[numberOfClicks])
+
+  /*Get flipped cards, 
+  unflip them if they ar different, 
+  and flip them if they are equal */
   useEffect(() => {
     if (numberOfClicks === 2) {
-      arrOfImages[0] === arrOfImages[1]
-        ? console.log("same")
-        : flipCards(arrOfIds[0], arrOfIds[1]);
-      // Reset the "arrOfImages" array and the "numberOfClicks" state variable
-      setArrOfImages([]);
-      setArrOfIds([]);
-      setNumberOfClicks(0);
-    }
-  }, [arrOfImages]);
-  const flipCards = (id1, id2) => {
-    const gameCardsNodes = document.querySelector(".game-container").childNodes;
-    const gameCards = [...gameCardsNodes];
-
-    gameCards.map((element) => {
-      const id = element.getAttribute("idgamecard");
-      if (id === id1 || id === id2) {
-        element.style.pointerEvents = "auto";
+      const [id1, id2] = flippedCards;
+      const [card1, card2] = [
+        cards.find((card) => card.id === id1),
+        cards.find((card) => card.id === id2),
+      ];
+      if (card1.image === card2.image) {
+        setUnflippedCards([...unflippedCards, ...flippedCards]);
+      } else {
         setTimeout(() => {
-          element.className = "game-card flipped";
+          setUnflippedCards([...unflippedCards, ...flippedCards]);
         }, 1000);
       }
-    });
-  };
+      setFlippedCards([]);
+      setNumberOfClicks(0);
+    }
+  }, [flippedCards]);
 
   return (
     <>
@@ -106,7 +114,7 @@ export const Game = () => {
           ${difficulty === "hard" ? "hard-container" : ""}
         `}
         >
-          {charactersForGrid.map((character, index) => {
+          {cardsForGrid.map((character, index) => {
             return (
               <CharacterGameCard
                 numberOfClicks={numberOfClicks}
@@ -122,11 +130,12 @@ export const Game = () => {
             );
           })}
         </div>
+        {/* BUTTONS FOR DIFFICULTY*/}
         <section className="difficulty-section">
           <button
             onClick={() => {
               setDifficulty("easy");
-              setNumberOfCharacters(10);
+              setNumberOfcards(10);
             }}
           >
             Easy
@@ -134,7 +143,7 @@ export const Game = () => {
           <button
             onClick={() => {
               setDifficulty("medium");
-              setNumberOfCharacters(20);
+              setNumberOfcards(20);
             }}
           >
             Medium
@@ -142,7 +151,7 @@ export const Game = () => {
           <button
             onClick={() => {
               setDifficulty("hard");
-              setNumberOfCharacters(30);
+              setNumberOfcards(30);
             }}
           >
             Hard
