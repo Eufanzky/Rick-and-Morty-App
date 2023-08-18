@@ -38,12 +38,15 @@
 }
 
 .character-card h3 {
+  text-align: center;
   font-size: 1.4rem;
 }
 .character-card div {
   margin-bottom: 30px;
 }
 .character-card div p {
+  margin: 2px 0px;
+  text-align: center;
   font-size: 1.1rem;
   color: var(--unbleached-silk);
 }
@@ -55,7 +58,7 @@
 
 @media (min-width: 500px) {
   .character-card {
-    width: 250px;
+    width: 200px;
   }
 }
 
