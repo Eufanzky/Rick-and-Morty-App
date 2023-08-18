@@ -8,7 +8,7 @@ function Footer() {
   return (
     <footer className={`footer ${characters ? "" : "footer-to-the-bottom"}`}>
       <p>
-        Made with ❤️ by <b>Eufanzky</b>
+        © 2023 | Made with ❤️ by Eugenio Condori <b>@Eufanzky</b>
       </p>
     </footer>
   );
