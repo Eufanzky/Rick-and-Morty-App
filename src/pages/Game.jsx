@@ -3,6 +3,7 @@ import { BiShuffle, BiWorld } from "react-icons/bi";
 import { CharacterGameCard } from "../components/CharacterGameCard";
 import Nav from "../components/Nav";
 import "../styles/Game.scss";
+import { AnimatedBackground } from "../components/AnimatedBackground";
 
 export const Game = () => {
   const [totalCharacters, setTotalCharacters] = useState(0);
@@ -15,7 +16,6 @@ export const Game = () => {
   const [numberOfClicks, setNumberOfClicks] = useState(0);
   const [flippedCards, setFlippedCards] = useState([]);
   const [unflippedCards, setUnflippedCards] = useState([]);
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,8 +66,10 @@ export const Game = () => {
   /*TODO: DELETE THIS USEEFFCT AFTER PROVES */
   useEffect(() => {
     const flipCards = (id1, id2) => {
-      const gameCards = [...document.querySelector(".game-container").childNodes];
-  
+      const gameCards = [
+        ...document.querySelector(".game-container").childNodes,
+      ];
+
       gameCards.map((element) => {
         const id = element.getAttribute("idgamecard");
         if (id === id1 || id === id2) {
@@ -93,7 +95,7 @@ export const Game = () => {
   useEffect(() => {
     if (numberOfClicks === 2) {
       if (arrOfImages[0] === arrOfImages[1]) {
-        console.log('same');
+        console.log("same");
       } else {
         setFlippedCards([...flippedCards, ...arrOfIds]);
         setTimeout(() => {
@@ -106,7 +108,6 @@ export const Game = () => {
       setNumberOfClicks(0);
     }
   }, [arrOfImages]);
-
 
   return (
     <>
@@ -170,6 +171,7 @@ export const Game = () => {
           </button>
         </section>
       </section>
+      <AnimatedBackground />
     </>
   );
 };

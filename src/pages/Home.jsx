@@ -14,10 +14,10 @@ import PrevNextContainer from "../containers/PrevNextContainer";
 import CharactersContainer from "../containers/CharactersContainer";
 //context
 import { RickAppContext } from "../context/RickAppContext";
-
+import { AnimatedBackground } from "../components/AnimatedBackground";
 
 export const Home = () => {
-  const {selectedCharacter} = useContext(RickAppContext);
+  const { selectedCharacter } = useContext(RickAppContext);
 
   return (
     <>
@@ -35,9 +35,9 @@ export const Home = () => {
         {/* Characters section */}
         <section className="characters-section">
           <h2 className="section-subtitle">Characters</h2>
-          <Searcher/>
-          <PrevNextContainer/>
-          <CharactersContainer/>
+          <Searcher />
+          <PrevNextContainer />
+          <CharactersContainer />
         </section>
 
         {/* Modal when selecting one character*/}
@@ -53,8 +53,11 @@ export const Home = () => {
       </main>
 
       {/* --------FOOTER CONTENT--------- */}
-      <Footer/>
+      <Footer />
+
+      {/*Animated background*/}
+      <AnimatedBackground/>
+      
     </>
   );
-}
-
+};

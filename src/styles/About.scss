@@ -1,49 +1,59 @@
-@import 'vars';
+@import "vars";
 
 .About {
-    width: 100vw;
-    height:fit-content;
-    padding: 50px 0px;
+  width: 100vw;
+  height: fit-content;
+  padding: 50px 0px;
 }
 .center-items {
-    display: flex; 
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.about-container  {
-    width: 90%;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+.about-container {
+  width: 90%;
+  height: 1300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 
-    background-image: url('../assets/images/wood-background.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+  // background-image: url('../assets/images/wood-background.jpg');
+  // background-repeat: no-repeat;
+  // background-position: center;
+  // background-size: cover;
 
-    padding: 50px 40px;
-    justify-content: space-evenly;
-    border: solid black 10px;
-    border-radius: 15px;
-}
+  background: linear-gradient(
+    164deg,
+    rgba(85, 145, 127, 1) 77%,
+    rgba(107, 171, 144, 1) 98%
+  );
 
-.about-container p{
-    font-size: 1.5rem;
-    color: var(--unbleached-silk);
-    text-align: justify;
-}
-.about-container p a{
-    color: var(--unbleached-silk);
+  padding: 50px 40px;
+  justify-content: space-evenly;
+  border: solid 5px black;
+  border-radius: 15px;
 }
 
+.about-container {
+  font-size: 1.9rem;
+}
+.about-container p {
+  font-size: 1.5rem;
+  color: var(--unbleached-silk);
+  text-align: left;
+}
+.about-container p a {
+  color: var(--unbleached-silk);
+}
 
-@media (min-width: 1100px) {
-    .about-container  {
-        width: 50%;
-        height: 70%;
-    }
-    
+@media (min-width: 500px) {
+  .About {
+    height: calc(100vh - 70px);
+  }
+  .about-container {
+    max-width: 600px;
+    height: 700px;
+  }
 }
