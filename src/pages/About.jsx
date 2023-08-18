@@ -15,20 +15,24 @@ export const About = () => {
       <section className="About center-items">
         <div className="about-container center-items">
           <p>
-            Rick and morty app has been made using the{" "}
-            <a href="https://rickandmortyapi.com/documentation/">
-              rickandmortyapi
-            </a>
-            , if you want to make a project using this API you can check that
-            page.
+            "Rick and Morty Appp" is create using official's API of the serie.
+            This app is a personale project.
           </p>
           <p>
-            This page is a personal project made for just practicing and improve
-            React skills, feel free to get the code by yourself and check it!
+            The focus of the app has been to give to thos Rick and Morty lovers
+            a place where they cam get detailed info about the characters. This
+            app has responsive design and a good architectura, following best
+            practices of development.
           </p>
           <p>
-            If you want to know more about more projects you can visit the next
-            link. HAVE FUN :)
+            If you want to contribute, collaborate, or add something, you can
+            make a pull request on the next link:{" "}
+            <a href="https://github.com/Eufanzky/Rick-and-Morty-App">Github</a>
+          </p>
+          <p>
+            If you ar elooking for more projects that inspire you or expand your
+            abbilities, I invite you to explore my website, where you will find
+            more projects that i made.
           </p>
         </div>
       </section>

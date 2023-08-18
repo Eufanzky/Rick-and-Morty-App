@@ -7,8 +7,9 @@ function CharacterCard({image, character, name, species, status, gender}) {
   const {setSelectedCharacter, openModal} = useContext(RickAppContext);
   useEffect(() => {
     VanillaTilt.init(document.querySelectorAll(".character-card"), {
-      max: 25,
+      max: 35,
       speed: 400,
+      perspective: 1000,
       glare: true,
     });
   }, []);
@@ -22,7 +23,7 @@ function CharacterCard({image, character, name, species, status, gender}) {
         openModal();
       }}
     >
-      <figure className="parallax-inner-elements">
+      <figure>
         <img src={image} alt="" />
       </figure>
       <h3 className="parallax-inner-elements">{name}</h3>

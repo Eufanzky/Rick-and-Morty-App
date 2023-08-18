@@ -2,7 +2,8 @@
 
 .About {
     width: 100vw;
-    height: calc(100vh - 70px);
+    height:fit-content;
+    padding: 50px 0px;
 }
 .center-items {
     display: flex; 
@@ -11,21 +12,28 @@
     justify-content: center;
 }
 .about-container  {
-    width: 80%;
-    height: 90%;
+    width: 90%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
     background-image: url('../assets/images/wood-background.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    padding: 50px;
+
+    padding: 50px 40px;
     justify-content: space-evenly;
     border: solid black 10px;
-    border-radius: 10%;
+    border-radius: 15px;
 }
 
 .about-container p{
     font-size: 1.5rem;
-    color: var(--nyanza);
+    color: var(--unbleached-silk);
+    text-align: justify;
 }
 .about-container p a{
     color: var(--unbleached-silk);

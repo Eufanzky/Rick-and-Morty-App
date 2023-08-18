@@ -11,14 +11,10 @@ export const CharacterGameCard = ({
   setArrOfIds,
   idgamecard,
 }) => {
-  // Create a state variable called "isFlipped" and initialize it to "true"
   const [isFlipped, setIsFlipped] = useState(true);
-  // This function is executed when the game card is clicked
-  const handleClick = (event) => {
-    // Flip the game card by changing the value of "isFlipped"
-    setIsFlipped(!isFlipped);
 
-    // Increment the number of clicks by calling the "setNumberOfClicks" function
+  const handleClick = (event) => {
+    setIsFlipped(!isFlipped);
     setNumberOfClicks(numberOfClicks + 1);
 
     // Get the front image of the clicked game card and add it to the "arrOfImages" array
@@ -35,7 +31,6 @@ export const CharacterGameCard = ({
     setArrOfIds(auxiliarArray2)
   };
 
-  // Return the HTML that represents the game card. The "flipped" class is added to the main div to flip the game card
   return (
     <div
       className={`game-card ${isFlipped ? "flipped" : ""}`}
